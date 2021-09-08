@@ -1,0 +1,2 @@
+sort = "lines"
+types = ["C","CHeader","Cpp","CppHeader"]

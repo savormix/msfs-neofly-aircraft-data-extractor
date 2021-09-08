@@ -1,0 +1,54 @@
+#include "version.h"
+
+#include <winres.h>
+
+#define VER_FILEVERSION             MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_MAJOR,MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_MINOR,MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_PATCH,0
+#define VER_FILEVERSION_STR         MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_STR
+
+#define VER_PRODUCTNAME_STR         "MSFS Aircraft Data Extractor"
+#define VER_PRODUCTVERSION          MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_MAJOR,MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_MINOR,MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_PATCH,0
+#define VER_PRODUCTVERSION_STR      MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_STR
+
+#define VER_COMMENTS_STR            "https://github.com/savormix/msfs-neofly-aircraft-data-extractor"
+#define VER_COMPANYNAME_STR         "RevEngineer.eu"
+#define VER_FILEDESCRIPTION_STR     "MSFS Aircraft Data Extractor"
+#define VER_INTERNALNAME_STR        "msfs-neofly-aircraft-data-extractor"
+#define VER_ORIGINALNAME_STR        "msfs_neofly_aircraft_data_extractor.exe"
+#define VER_LEGALCOPYRIGHT_STR      "Copyright (C) 2021 RevEngineer.eu"
+
+#ifndef _DEBUG
+#define VER_DEBUG                   0
+#else
+#define VER_DEBUG                   VS_FF_DEBUG
+#endif
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     VER_FILEVERSION
+PRODUCTVERSION  VER_PRODUCTVERSION
+FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+FILEFLAGS       VER_DEBUG
+FILEOS          VOS_NT_WINDOWS32
+FILETYPE        VFT_APP
+FILESUBTYPE     VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004B0"
+        BEGIN
+            VALUE "Comments",         VER_COMMENTS_STR
+            VALUE "CompanyName",      VER_COMPANYNAME_STR
+            VALUE "FileDescription",  VER_FILEDESCRIPTION_STR
+            VALUE "FileVersion",      VER_FILEVERSION_STR
+            VALUE "InternalName",     VER_INTERNALNAME_STR
+            VALUE "LegalCopyright",   VER_LEGALCOPYRIGHT_STR
+            VALUE "OriginalFilename", VER_ORIGINALNAME_STR
+            VALUE "ProductName",      VER_PRODUCTNAME_STR
+            VALUE "ProductVersion",   VER_PRODUCTVERSION_STR
+        END
+    END
+
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END

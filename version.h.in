@@ -1,0 +1,18 @@
+#ifndef MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_MAJOR
+
+#define MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_MAJOR @msfs_neofly_aircraft_data_extractor_VERSION_MAJOR@
+#define MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_MINOR @msfs_neofly_aircraft_data_extractor_VERSION_MINOR@
+#define MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_PATCH @msfs_neofly_aircraft_data_extractor_VERSION_PATCH@
+
+#define MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_STR "\
+@msfs_neofly_aircraft_data_extractor_VERSION_MAJOR@.\
+@msfs_neofly_aircraft_data_extractor_VERSION_MINOR@.\
+@msfs_neofly_aircraft_data_extractor_VERSION_PATCH@"
+
+#define MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_APPNAME "\
+MSFS Aircraft Data Extractor for NeoFly v\
+@msfs_neofly_aircraft_data_extractor_VERSION_MAJOR@.\
+@msfs_neofly_aircraft_data_extractor_VERSION_MINOR@.\
+@msfs_neofly_aircraft_data_extractor_VERSION_PATCH@"
+
+#endif //MSFS_NEOFLY_AIRCRAFT_DATA_EXTRACTOR_VERSION_MAJOR
