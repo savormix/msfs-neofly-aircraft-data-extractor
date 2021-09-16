@@ -14,7 +14,7 @@ A console application to display aircraft data required to add/update an aircraf
 - Run msfs-neofly-aircraft-data-extractor.exe
 - Console window opens (leave it open; aircraft data will be displayed here):
 
-  `MSFS Aircraft Data Extractor for NeoFly v1.0.0`
+  `MSFS Aircraft Data Extractor for NeoFly v1.0.1`
 - Confirm successful connection with MSFS (or start MSFS and wait for it):
 
   `--- Connected to MSFS`
@@ -66,9 +66,11 @@ A console application to display aircraft data required to add/update an aircraf
 
 - Q: Where is the range value?
 
-  A: _Reference values_ (values named `ui_…` in `aircraft.cfg`) are not used during simulation and are not available via SimConnect.
+  A: **Planned for version 1.1** (non-marketplace aircraft)
+
+  _Reference values_ (values named `ui_…` in `aircraft.cfg`) are not used during simulation and are not available via SimConnect.
   There is a plan to implement extracting them in the future, but it will not work for any marketplace aircraft
-  (including Premium/Deluxe edition aircraft). That would need a different approach, which might also come in the future.
+  (including Premium/Deluxe edition aircraft). That would need a different approach, which may or may not be feasible.
 - Q: Why two cruise speeds? And why neither matches what is shown when selecting aircraft?
 
   A: Aircraft selection screen uses _reference values_, which can be set to anything, regardless of the aircraft's own flight model.
@@ -79,6 +81,13 @@ A console application to display aircraft data required to add/update an aircraf
 - Q: The type/category/pax number for aircraft X is completely wrong!
 
   A: [Raise an issue](https://github.com/savormix/msfs-neofly-aircraft-data-extractor/issues)
+
+## Changelog
+
+### Version 1.0.1
+
+- Adjusted passenger counting logic
+- Removed second cruise speed value (MSFS estimate) from output
 
 ## Building the application
 

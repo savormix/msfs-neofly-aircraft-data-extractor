@@ -31,7 +31,9 @@ void ReportAircraftData(NeoFly::NeoFlyAircraftData *neoFlyData) {
     }
     std::cout << ")" << std::endl;
     std::cout << "- Category: " << NeoFly::GetCategory(neoFlyData) << std::endl;
-    std::cout << "- Cruise speed (kt): " << neoFlyData->dwSpeedVCKt << ", est. " << neoFlyData->dwCruiseSpeedKt << std::endl;
+    std::cout << "- Cruise speed (kt): " << neoFlyData->dwSpeedVCKt;
+    // std::cout << ", est. " << neoFlyData->dwCruiseSpeedKt;
+    std::cout << std::endl;
     std::cout << "- Empty weight (lbs): " << neoFlyData->dEmptyWeightPounds << std::endl;
     std::cout << "- Max fuel (lbs): " << (neoFlyData->dMaxFuelGallons * neoFlyData->dGallonWeightPounds) << std::endl;
     std::cout << "- Max payload (lbs): " << (neoFlyData->dMaxTakeoffPounds - neoFlyData->dEmptyWeightPounds) << std::endl;

@@ -4,7 +4,8 @@
 #include <cstring>
 
 // this will obviously not work for anything that is bypassing localization files
-const char *PASSENGER_SUBSTRINGS[] = {"ATTENDANT", "CABIN", "COPILOT", "PASSENGER", "PAX"};
+const char *CARGO_SUBSTRINGS[] = {"BAGGAGE", "CARGO", "CABINET", "LUGGAGE"};
+const char *PASSENGER_SUBSTRINGS[] = {"ATTENDANT", "CABIN", "COPILOT", "P1", "P2", "PASSENGER", "PASS", "PAX"};
 const char *UNKNOWN_SUBSTRINGS[] = {"BUSINESS", "CLASS", "CREW", "ECONOMY", "GROUP", "PILOTS"};
 
 void uppercase(const char *src, char *dst) {
@@ -90,6 +91,16 @@ namespace NeoFly {
                 if (strstr(uppercased, sub) != nullptr) {
                     return -1;
                 }
+            }
+            bool cargo = false;
+            for (auto &sub: CARGO_SUBSTRINGS) {
+                if (strstr(uppercased, sub) != nullptr) {
+                    cargo = true;
+                    break;
+                }
+            }
+            if (cargo) {
+                continue;
             }
             for (auto &sub: PASSENGER_SUBSTRINGS) {
                 if (strstr(uppercased, sub) != nullptr) {
