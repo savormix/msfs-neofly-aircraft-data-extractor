@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.20)
 project(msfs_neofly_aircraft_data_extractor
-        VERSION 1.0.1
+        VERSION 1.1.0
         LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+set(VERSION_SUFFIX -rc0)
 configure_file(version.h.in version.h)
 add_executable(${PROJECT_NAME}
         main.cpp
@@ -13,7 +14,9 @@ add_executable(${PROJECT_NAME}
         src/neofly/neofly_aircraft_data.cpp
         src/neofly/neofly_aircraft_data.h
         src/simconnect/simconnect_connection.cpp
-        src/simconnect/simconnect_connection.h)
+        src/simconnect/simconnect_connection.h
+        src/msfs/msfs_package_reader.cpp
+        src/msfs/msfs_package_reader.h)
 
 # dependencies
 find_path(
@@ -73,8 +76,8 @@ add_custom_command(TARGET ${PROJECT_NAME}
         POST_BUILD
         COMMAND certutil -hashfile ${PROJECT_NAME}.exe SHA256 | findstr /v /b SHA | findstr /v /b CertUtil > ${PROJECT_NAME}.exe.sha256
         COMMAND certutil -hashfile SimConnect.dll SHA256 | findstr /v /b SHA | findstr /v /b CertUtil > SimConnect.dll.sha256
-        COMMAND del ${PROJECT_NAME}-${PROJECT_VERSION}.zip
-        COMMAND 7z a -bd -sse -stl -tzip ${PROJECT_NAME}-${PROJECT_VERSION}.zip ${PROJECT_NAME}.exe ${PROJECT_NAME}.exe.sha256 SimConnect.dll SimConnect.dll.sha256 LICENSE README.md
-        BYPRODUCTS ${PROJECT_NAME}.exe.sha256 SimConnect.dll.sha256 ${PROJECT_NAME}-${PROJECT_VERSION}.zip
+        COMMAND del ${PROJECT_NAME}-${PROJECT_VERSION}${VERSION_SUFFIX}.zip
+        COMMAND 7z a -bd -sse -stl -tzip ${PROJECT_NAME}-${PROJECT_VERSION}${VERSION_SUFFIX}.zip ${PROJECT_NAME}.exe ${PROJECT_NAME}.exe.sha256 SimConnect.dll SimConnect.dll.sha256 LICENSE README.md
+        BYPRODUCTS ${PROJECT_NAME}.exe.sha256 SimConnect.dll.sha256 ${PROJECT_NAME}-${PROJECT_VERSION}${VERSION_SUFFIX}.zip
         COMMENT Create SHA256 hashes and release archive
         VERBATIM USES_TERMINAL)
