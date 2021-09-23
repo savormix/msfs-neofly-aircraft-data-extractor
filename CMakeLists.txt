@@ -6,7 +6,13 @@ project(msfs_neofly_aircraft_data_extractor
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(VERSION_SUFFIX -rc0)
+set(VERSION_SUFFIX -rc1)
+if(${VERSION_SUFFIX} MATCHES .*verbose.*)
+    set(VERBOSE_OUTPUT 1)
+else()
+    set(VERBOSE_OUTPUT 0)
+endif()
+configure_file(cond_comp.h.in cond_comp.h)
 configure_file(version.h.in version.h)
 add_executable(${PROJECT_NAME}
         main.cpp
