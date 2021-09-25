@@ -6,7 +6,7 @@ project(msfs_neofly_aircraft_data_extractor
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(VERSION_SUFFIX -rc1)
+set(VERSION_SUFFIX)
 if(${VERSION_SUFFIX} MATCHES .*verbose.*)
     set(VERBOSE_OUTPUT 1)
 else()

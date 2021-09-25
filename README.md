@@ -98,7 +98,9 @@ A console application to display aircraft data required to add/update an aircraf
 - **Q: Why is aircraft range "Unknown"?**
 
   A: _Reference values_ (values named `ui_…` in `aircraft.cfg`) are not used during simulation and are not available via SimConnect.
-  This application will extract the range value from file for non-marketplace aircraft, but there is no EULA compliant way to do this for marketplace-locked aircraft.
+  This application will extract the range value from file for non-marketplace aircraft, but there is **no EULA compliant way to do this for marketplace-locked aircraft**.
+
+  If you receive an `Unknown` value for non-marketplace aircraft, [raise an issue](https://github.com/savormix/msfs-neofly-aircraft-data-extractor/issues).
 
 - **Q: Why does the cruise speed not match what is shown at aircraft selection screen?**
 
@@ -106,7 +108,7 @@ A console application to display aircraft data required to add/update an aircraf
 
 - **Q: Why are airliners shown with -1 passengers?**
   
-  A: There is not enough data available (to SimConnect or in general) to report an accurate number.
+  A: Not enough data available (to SimConnect or in general) to report an accurate number.
 - **Q: The type/category/pax number/max range for aircraft X is completely wrong!**
 
   A: [Raise an issue](https://github.com/savormix/msfs-neofly-aircraft-data-extractor/issues)
@@ -117,7 +119,7 @@ A console application to display aircraft data required to add/update an aircraf
 
 - Added Range value to output
 
-  (reports `Unknown` for marketplace aircraft)
+  (reports `Unknown` for marketplace-locked aircraft)
 
 ### Version 1.0.1
 
