@@ -9,7 +9,6 @@ namespace NeoFly {
         char szTitle[256]; // SIMCONNECT_DATATYPE_STRING256
         uint32_t dwEngineCount; // SIMCONNECT_DATATYPE_INT32
         uint32_t dwEngineTypes[4]; // SIMCONNECT_DATATYPE_INT32
-        uint32_t dwCruiseSpeedKt; // SIMCONNECT_DATATYPE_INT32
         uint32_t dwSpeedVCKt; // SIMCONNECT_DATATYPE_INT32
         double dEmptyWeightPounds; // SIMCONNECT_DATATYPE_FLOAT64
         double dMaxFuelGallons; // SIMCONNECT_DATATYPE_FLOAT64

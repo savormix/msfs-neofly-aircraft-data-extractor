@@ -14,18 +14,19 @@ A console application to display aircraft data required to add/update an aircraf
 - Run msfs-neofly-aircraft-data-extractor.exe
 - Console window opens (leave it open; aircraft data will be displayed here):
 
-  `MSFS Aircraft Data Extractor for NeoFly v1.0.1`
+  `MSFS Aircraft Data Extractor for NeoFly v1.1.0`
 - Confirm successful connection with MSFS (or start MSFS and wait for it):
 
   `--- Connected to MSFS`
 - When MSFS finishes initial loading (if not already), aircraft data will be displayed, for example:
   ```markdown
   Current aircraft:
-  - Name: Top Rudder 103 Solo Asobo Small Wheel
+  - Name: 103 Solo Aviators Club Livery
   - Type: Prop
   - Engine(s): 1 (Piston)
   - Category: A
-  - Cruise speed (kt): 47, est. 54
+  - Cruise speed (kt): 47
+  - Range (NM): Unknown
   - Empty weight (lbs): 254
   - Max fuel (lbs): 30
   - Max payload (lbs): 296
@@ -39,50 +40,86 @@ A console application to display aircraft data required to add/update an aircraf
   - Type: Prop
   - Engine(s): 1 (Piston)
   - Category: A
-  - Cruise speed (kt): 78, est. 91
+  - Cruise speed (kt): 78
+  - Range (NM): Unknown
   - Empty weight (lbs): 650
   - Max fuel (lbs): 168
   - Max payload (lbs): 670
   - Max takeoff weight (lbs): 1320
   - Pax: 0
-    ```
+  ```
 - Repeat as necessary:
   ```markdown
   Current aircraft:
-  - Name: B787 10 Xbox Aviators Club Livery
+  - Name: B787 10 World Travel Livery
   - Type: Airliner
   - Engine(s): 2 (Jet, Jet)
   - Category: E
-  - Cruise speed (kt): 495, est. 444
+  - Cruise speed (kt): 495
+  - Range (NM): Unknown
   - Empty weight (lbs): 298700
   - Max fuel (lbs): 223673
   - Max payload (lbs): 258300
   - Max takeoff weight (lbs): 557000
   - Pax: -1
+    ```
+  ```markdown
+  Current aircraft:
+  - Name: TBM 930 01 Livery
+  - Type: Turbo Prop
+  - Engine(s): 1 (Turboprop)
+  - Category: C
+  - Cruise speed (kt): 330
+  - Range (NM): 1730
+  - Empty weight (lbs): 4629
+  - Max fuel (lbs): 1956.4
+  - Max payload (lbs): 2765
+  - Max takeoff weight (lbs): 7394
+  - Pax: 5
+  ```
+  ```markdown
+  - Current aircraft:
+  - Name: Just Flight PA28 Warrior II Custom
+  - Type: Prop
+  - Engine(s): 1 (Piston)
+  - Category: A
+  - Cruise speed (kt): 111
+  - Range (NM): 637
+  - Empty weight (lbs): 1300
+  - Max fuel (lbs): 288
+  - Max payload (lbs): 1025
+  - Max takeoff weight (lbs): 2325
+  - Pax: 3
   ```
 - When finished, close the console window
 
 ## FAQ
 
-- Q: Where is the range value?
+- **Q: Why is aircraft range "Unknown"?**
 
-  A: **Planned for version 1.1** (non-marketplace aircraft)
+  A: _Reference values_ (values named `ui_…` in `aircraft.cfg`) are not used during simulation and are not available via SimConnect.
+  This application will extract the range value from file for non-marketplace aircraft, but there is **no EULA compliant way to do this for marketplace-locked aircraft**.
 
-  _Reference values_ (values named `ui_…` in `aircraft.cfg`) are not used during simulation and are not available via SimConnect.
-  There is a plan to implement extracting them in the future, but it will not work for any marketplace aircraft
-  (including Premium/Deluxe edition aircraft). That would need a different approach, which may or may not be feasible.
-- Q: Why two cruise speeds? And why neither matches what is shown when selecting aircraft?
+  If you receive an `Unknown` value for non-marketplace aircraft, [raise an issue](https://github.com/savormix/msfs-neofly-aircraft-data-extractor/issues).
 
-  A: Aircraft selection screen uses _reference values_, which can be set to anything, regardless of the aircraft's own flight model.
-  The first cruise speed is the aircraft's design Vc and is what you should use. The second speed, shown after `est.` is a MSFS estimation.
-- Q: Why are airliners shown with -1 passengers?
+- **Q: Why does the cruise speed not match what is shown at aircraft selection screen?**
+
+  A: This application provides the _Aircraft Design Vc_ value. Some aircraft are known to specify their afterburner speed in the selection menu instead.
+
+- **Q: Why are airliners shown with -1 passengers?**
   
-  A: There is not enough data available (to SimConnect or in general) to report an accurate number.
-- Q: The type/category/pax number for aircraft X is completely wrong!
+  A: Not enough data available (to SimConnect or in general) to report an accurate number.
+- **Q: The type/category/pax number/max range for aircraft X is completely wrong!**
 
   A: [Raise an issue](https://github.com/savormix/msfs-neofly-aircraft-data-extractor/issues)
 
 ## Changelog
+
+### Version 1.1.0
+
+- Added Range value to output
+
+  (reports `Unknown` for marketplace-locked aircraft)
 
 ### Version 1.0.1
 
