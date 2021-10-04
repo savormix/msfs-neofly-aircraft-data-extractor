@@ -70,7 +70,7 @@ namespace NeoFly {
                 if (neoFlyData->dEmptyWeightPounds >= 50000) {
                     return "Airliner";
                 }
-                return InferPassengerCapacity(neoFlyData) > 0 ? "Jet" : "Airliner";
+                return InferPassengerCapacity(neoFlyData) >= 0 ? "Jet" : "Airliner";
             case 'F':
                 return "Airliner";
             default:
