@@ -115,6 +115,10 @@ A console application to display aircraft data required to add/update an aircraf
 
 ## Changelog
 
+### Version 1.1.1
+
+- Correction for Airliner vs Jet classification with regards to pax
+
 ### Version 1.1.0
 
 - Added Range value to output
