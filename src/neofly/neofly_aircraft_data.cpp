@@ -5,7 +5,7 @@
 
 // this will obviously not work for anything that is bypassing localization files
 const char *CARGO_SUBSTRINGS[] = {"BAGGAGE", "CARGO", "CABINET", "LUGGAGE"};
-const char *PASSENGER_SUBSTRINGS[] = {"ATTENDANT", "CABIN", "COPILOT", "P1", "P2", "PASSENGER", "PASS", "PAX"};
+const char *PASSENGER_SUBSTRINGS[] = {"ATTENDANT", "CABIN", "COPILOT", "INSTRUCTOR", "P1", "P2", "PASSENGER", "PASS", "PAX"};
 const char *UNKNOWN_SUBSTRINGS[] = {"BUSINESS", "CLASS", "CREW", "ECONOMY", "GROUP", "PILOTS"};
 
 void uppercase(const char *src, char *dst) {

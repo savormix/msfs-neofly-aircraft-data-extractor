@@ -3,7 +3,7 @@
 ![Apache-2.0 License](https://img.shields.io/github/license/savormix/msfs-neofly-aircraft-data-extractor)
 ![MSVC C++](https://img.shields.io/github/languages/top/savormix/msfs-neofly-aircraft-data-extractor)
 ![Lines of code](https://img.shields.io/tokei/lines/github/savormix/msfs-neofly-aircraft-data-extractor)
-![MSFS SDK 0.14.1.0](https://img.shields.io/badge/MSFS%20SDK-0.14.1.0-lightgrey)
+![MSFS SDK 0.15.0.0](https://img.shields.io/badge/MSFS%20SDK-0.15.0.0-lightgrey)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/savormix/msfs-neofly-aircraft-data-extractor)
 
 
@@ -14,7 +14,7 @@ A console application to display aircraft data required to add/update an aircraf
 - Run msfs-neofly-aircraft-data-extractor.exe
 - Console window opens (leave it open; aircraft data will be displayed here):
 
-  `MSFS Aircraft Data Extractor for NeoFly v1.1.0`
+  `MSFS Aircraft Data Extractor for NeoFly v1.1.2`
 - Confirm successful connection with MSFS (or start MSFS and wait for it):
 
   `--- Connected to MSFS`
@@ -114,6 +114,10 @@ A console application to display aircraft data required to add/update an aircraf
   A: [Raise an issue](https://github.com/savormix/msfs-neofly-aircraft-data-extractor/issues)
 
 ## Changelog
+
+### Version 1.1.2
+
+- Classify instructor as pax
 
 ### Version 1.1.1
 
