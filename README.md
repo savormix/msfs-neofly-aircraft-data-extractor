@@ -3,7 +3,7 @@
 ![Apache-2.0 License](https://img.shields.io/github/license/savormix/msfs-neofly-aircraft-data-extractor)
 ![MSVC C++](https://img.shields.io/github/languages/top/savormix/msfs-neofly-aircraft-data-extractor)
 ![Lines of code](https://img.shields.io/tokei/lines/github/savormix/msfs-neofly-aircraft-data-extractor)
-![MSFS SDK 0.15.0.0](https://img.shields.io/badge/MSFS%20SDK-0.15.0.0-lightgrey)
+![MSFS SDK 0.15.0.0](https://img.shields.io/badge/MSFS%20SDK-0.16.0.0-lightgrey)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/savormix/msfs-neofly-aircraft-data-extractor)
 
 
@@ -14,7 +14,7 @@ A console application to display aircraft data required to add/update an aircraf
 - Run msfs-neofly-aircraft-data-extractor.exe
 - Console window opens (leave it open; aircraft data will be displayed here):
 
-  `MSFS Aircraft Data Extractor for NeoFly v1.1.2`
+  `MSFS Aircraft Data Extractor for NeoFly v1.1.3`
 - Confirm successful connection with MSFS (or start MSFS and wait for it):
 
   `--- Connected to MSFS`
@@ -33,7 +33,7 @@ A console application to display aircraft data required to add/update an aircraf
   - Max takeoff weight (lbs): 550
   - Pax: 0
   ```
-- Select a different aircraft/livery and go back to the main menu:
+- Select a different aircraft/livery in hangar view (if changing selection in World Map, data will only be displayed after starting a flight or returning to main menu):
   ```markdown
   Current aircraft:
   - Name: Savage Shock Ultra Asobo Skis
@@ -109,11 +109,18 @@ A console application to display aircraft data required to add/update an aircraf
 - **Q: Why are airliners shown with -1 passengers?**
   
   A: Not enough data available (to SimConnect or in general) to report an accurate number.
+- **Q: Why is the cargo version of DC-6 shown with 1 pax?
+
+  A: MSFS only reports a single copilot station, the rest are cargo stations. No stations for engineers or other flight crew.
 - **Q: The type/category/pax number/max range for aircraft X is completely wrong!**
 
   A: [Raise an issue](https://github.com/savormix/msfs-neofly-aircraft-data-extractor/issues)
 
 ## Changelog
+
+### Version 1.1.3
+
+- Further adjustments to pax calculation
 
 ### Version 1.1.2
 

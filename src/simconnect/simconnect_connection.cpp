@@ -1,6 +1,6 @@
 #include "simconnect_connection.h"
 
-#include <windows.h>
+#include <Windows.h>
 #include "SimConnect.h"
 #include "../msfs/msfs_package_reader.h"
 #include "../neofly/neofly_aircraft_data.h"

@@ -2,11 +2,14 @@
 
 #include <algorithm>
 #include <cstring>
+#include <cstdlib>
 
 // this will obviously not work for anything that is bypassing localization files
 const char *CARGO_SUBSTRINGS[] = {"BAGGAGE", "CARGO", "CABINET", "LUGGAGE"};
 const char *PASSENGER_SUBSTRINGS[] = {"ATTENDANT", "CABIN", "COPILOT", "INSTRUCTOR", "P1", "P2", "PASSENGER", "PASS", "PAX"};
-const char *UNKNOWN_SUBSTRINGS[] = {"BUSINESS", "CLASS", "CREW", "ECONOMY", "GROUP", "PILOTS"};
+const char *UNKNOWN_SUBSTRINGS[] = {"BUSINESS", "CLASS", "CREW", "ECONOMY", "GROUP", "PILOTS", "ROWS"};
+
+const char *INDIVIDUAL_SEAT_POSITIONS[] = { "LEFT", "CENTER", "RIGHT" };
 
 void uppercase(const char *src, char *dst) {
     size_t length = strlen(src);
@@ -78,6 +81,25 @@ namespace NeoFly {
         }
     }
 
+    bool IsIndividualSeat(const char* payloadStationName) {
+        const char *prefix = "ROW ";
+        if (strncmp(payloadStationName, prefix, strlen(prefix)) != 0) {
+            return false;
+        }
+        char *rowNumEnd;
+        const long row = strtol(payloadStationName + (strlen(prefix)), &rowNumEnd, 10);
+        if (row < 1 || row > 50) {
+            return false;
+        }
+        ++rowNumEnd;
+        for (auto &position: INDIVIDUAL_SEAT_POSITIONS) {
+            if (strstr(payloadStationName, position) != nullptr) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     int32_t InferPassengerCapacity(NeoFlyAircraftData *neoFlyData) {
         if (neoFlyData->dwPayloadStationCount <= 1) {
             return 0;
@@ -107,6 +129,9 @@ namespace NeoFly {
                     ++result;
                     break;
                 }
+            }
+            if (IsIndividualSeat(uppercased)) {
+                ++result;
             }
             if (strstr(uppercased, "PILOT") != nullptr) {
                 pilotExcluded = true;
