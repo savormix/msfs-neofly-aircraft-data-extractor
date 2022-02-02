@@ -6,7 +6,7 @@ on:
 
 env:
   BUILD_TYPE: MinSizeRel
-  LIB: "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.19041.0\\um\\x64" # ?!!
+  # LIB: "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.19041.0\\um\\x64" # ?!!
   MSFS_SDK: ${{github.workspace}}
   TARGET_ARCH: AMD64
   TARGET_OS_VERSION: "10.0.19041"
@@ -26,7 +26,7 @@ jobs:
 
     - name: Configure CMake
       run: |
-        cmake -B ${{ github.workspace }}/build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DCMAKE_SYSTEM_PROCESSOR=${{ env.TARGET_ARCH }} -DCMAKE_SYSTEM_VERSION="${{ env.TARGET_OS_VERSION }}" --debug-find
+        cmake -G "CodeBlocks - NMake Makefiles" -B ${{ github.workspace }}/build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DCMAKE_SYSTEM_PROCESSOR=${{ env.TARGET_ARCH }} -DCMAKE_SYSTEM_VERSION="${{ env.TARGET_OS_VERSION }}" --debug-find
         
     - run: |
         certutil -?
