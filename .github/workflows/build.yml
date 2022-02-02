@@ -6,16 +6,10 @@ on:
 
 env:
   BUILD_TYPE: MinSizeRel
-  # LIB: "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.19041.0\\um\\x64"
+  LIB: "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.19041.0\\um\\x64" # ?!!
   MSFS_SDK: ${{github.workspace}}
   TARGET_ARCH: AMD64
   TARGET_OS_VERSION: "10.0.19041"
-  # Why is this not set by default during cmake config?
-  WindowsSdkBinPath: "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\"
-  WindowsSdkDir: "C:\\Program Files (x86)\\Windows Kits\\10\\"
-  WindowsSDKLibVersion: "10.0.19041.0\\"
-  WindowsSdkVerBinPath: "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.19041.0\\"
-  WindowsSDKVersion: "10.0.19041.0\\"
 
 jobs:
   build:
@@ -29,10 +23,6 @@ jobs:
         path: SimConnect SDK
         repository: savormix/msfs-simconnect-sdk
         token: ${{ secrets.SDK_PAT }}
-
-    - run: dir "C:\Program Files (x86)\Windows Kits\10\Include"
-
-# & "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
 
     - name: Configure CMake
       run: |
