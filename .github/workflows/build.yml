@@ -16,6 +16,7 @@ jobs:
     - name: Get MSFS SDK
       uses: actions/checkout@v2
       with:
+        path: sdk
         repository: savormix/msfs-simconnect-sdk
         token: ${{ secrets.SDK_PAT }}
 
