@@ -6,7 +6,7 @@ on:
 
 env:
   BUILD_TYPE: MinSizeRel
-  MSFS_SDK: ${{github.workspace}}/sdk
+  MSFS_SDK: ${{github.workspace}}
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
     - name: Get MSFS SDK
       uses: actions/checkout@v2
       with:
-        path: sdk
+        path: SimConnect SDK
         repository: savormix/msfs-simconnect-sdk
         token: ${{ secrets.SDK_PAT }}
 
