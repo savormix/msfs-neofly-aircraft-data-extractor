@@ -7,6 +7,7 @@ on:
 env:
   BUILD_TYPE: MinSizeRel
   MSFS_SDK: ${{github.workspace}}
+  TARGET_OS_VERSION: "10.0.19041"
 
 jobs:
   build:
@@ -24,12 +25,12 @@ jobs:
     - run: dir "C:\Program Files (x86)\Windows Kits\10\Include"
 
     - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -B ${{ github.workspace }}/build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DCMAKE_SYSTEM_VERSION=${{ env.TARGET_OS_VERSION }}
 
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build ${{ github.workspace }}/build --config ${{ env.BUILD_TYPE }}
 
     - name: Test
-      working-directory: ${{github.workspace}}/build
+      working-directory: ${{ github.workspace }}/build
       run: dir
       
