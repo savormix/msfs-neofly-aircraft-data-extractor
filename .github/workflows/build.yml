@@ -33,6 +33,7 @@ jobs:
         7z -h
 
     - name: Build
+      continue-on-error: true
       run: cmake --build ${{ github.workspace }}/build --config ${{ env.BUILD_TYPE }}
 
     - name: Test
