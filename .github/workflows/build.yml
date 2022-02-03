@@ -31,23 +31,14 @@ jobs:
         cmake -B ${{ github.workspace }}/build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DCMAKE_SYSTEM_PROCESSOR=${{ env.TARGET_ARCH }} -DCMAKE_SYSTEM_VERSION="${{ env.TARGET_OS_VERSION }}" -DMANUAL_PACKAGING=true -DCREATE_VERSION_FILE=true
 
     - name: Build
-      run: cmake --build ${{ github.workspace }}/build --config ${{ env.BUILD_TYPE }}
-
-    - name: Test
-      working-directory: ${{ github.workspace }}/build
       run: |
-        dir
-        dir ${{ env.BUILD_TYPE }}
-        type version.txt
+        cmake --build ${{ github.workspace }}/build --config ${{ env.BUILD_TYPE }}
         $ver=$(type version.txt)
-        echo PROJECT_VERSION=$ver
         echo "PROJECT_VERSION=$ver" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
       
     - name: Package
       working-directory: ${{ github.workspace }}/build
-      run: |
-        echo "${{ env.PROJECT_VERSION }}"
-        7z a -bd -sse -stl -tzip "${{ env.PROJECT_NAME }}-${{ env.PROJECT_VERSION }}.zip" ${{ env.BUILD_TYPE }}/${{ env.PROJECT_NAME }}.exe SimConnect.dll LICENSE README.md
+      run: 7z a -bd -sse -stl -tzip "${{ env.PROJECT_NAME }}-${{ env.PROJECT_VERSION }}.zip" ${{ env.BUILD_TYPE }}/${{ env.PROJECT_NAME }}.exe SimConnect.dll LICENSE README.md
     
     - name: Release
       uses: ncipollo/release-action@v1.9.0
