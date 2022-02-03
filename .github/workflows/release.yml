@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    branches: [ ci ]
+    tags: [ v* ]
+
+env:
+  BUILD_TYPE: MinSizeRel
+  LIB: "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.19041.0\\um\\x64"
+  MSFS_SDK: "${{ github.workspace }}"
+  PROJECT_NAME: msfs_neofly_aircraft_data_extractor
+  TARGET_ARCH: AMD64
+  TARGET_OS_VERSION: "10.0.19041"
+
+jobs:
+  release:
+    runs-on: windows-2022
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Get MSFS SDK
+      uses: actions/checkout@v2
+      with:
+        path: SimConnect SDK
+        repository: savormix/msfs-simconnect-sdk
+        token: ${{ secrets.SDK_PAT }}
+
+    - name: Configure CMake
+      run: |
+        cmake -B ${{ github.workspace }}/build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} -DCMAKE_SYSTEM_PROCESSOR=${{ env.TARGET_ARCH }} -DCMAKE_SYSTEM_VERSION="${{ env.TARGET_OS_VERSION }}" -DMANUAL_PACKAGING=true -DCREATE_VERSION_FILE=true
+
+    - name: Build
+      run: |
+        cmake --build "${{ github.workspace }}/build" --config ${{ env.BUILD_TYPE }}
+        $ver=$(type "${{ github.workspace }}/build/version.txt")
+        echo "PROJECT_VERSION=$ver" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
+      
+    - name: Package
+      working-directory: ${{ github.workspace }}/build
+      run: 7z a -bd -sse -stl -tzip "${{ env.PROJECT_NAME }}-${{ env.PROJECT_VERSION }}.zip" "${{ env.BUILD_TYPE }}/${{ env.PROJECT_NAME }}.exe" SimConnect.dll LICENSE README.md
+    
+    - name: Release
+      uses: ncipollo/release-action@v1.9.0
+      with:
+        allowUpdates: false
+        artifactErrorsFailBuild: true
+        artifacts: "${{ github.workspace }}/build/*.zip"
+        artifactContentType: application/octet-stream
+        draft: false
+        generateReleaseNotes: true
+        prerelease: false
+        name: test-ci

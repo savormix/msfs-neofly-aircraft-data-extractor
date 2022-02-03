@@ -78,12 +78,18 @@ configure_file(${SIMCONNECT_SDK_LIBS}/SimConnect.dll SimConnect.dll COPYONLY)
 configure_file(LICENSE LICENSE COPYONLY)
 configure_file(README.md README.md COPYONLY)
 
-add_custom_command(TARGET ${PROJECT_NAME}
-        POST_BUILD
-        COMMAND certutil -hashfile ${PROJECT_NAME}.exe SHA256 | findstr /v /b SHA | findstr /v /b CertUtil > ${PROJECT_NAME}.exe.sha256
-        COMMAND certutil -hashfile SimConnect.dll SHA256 | findstr /v /b SHA | findstr /v /b CertUtil > SimConnect.dll.sha256
-        COMMAND del ${PROJECT_NAME}-${PROJECT_VERSION}${VERSION_SUFFIX}.zip
-        COMMAND 7z a -bd -sse -stl -tzip ${PROJECT_NAME}-${PROJECT_VERSION}${VERSION_SUFFIX}.zip ${PROJECT_NAME}.exe ${PROJECT_NAME}.exe.sha256 SimConnect.dll SimConnect.dll.sha256 LICENSE README.md
-        BYPRODUCTS ${PROJECT_NAME}.exe.sha256 SimConnect.dll.sha256 ${PROJECT_NAME}-${PROJECT_VERSION}${VERSION_SUFFIX}.zip
-        COMMENT Create SHA256 hashes and release archive
-        VERBATIM USES_TERMINAL)
+if (${CREATE_VERSION_FILE})
+    file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/version.txt ${PROJECT_VERSION}${VERSION_SUFFIX})
+endif()
+
+if(NOT DEFINED MANUAL_PACKAGING OR NOT ${MANUAL_PACKAGING})
+    add_custom_command(TARGET ${PROJECT_NAME}
+            POST_BUILD
+            COMMAND certutil -hashfile ${PROJECT_NAME}.exe SHA256 | findstr /v /b SHA | findstr /v /b CertUtil > ${PROJECT_NAME}.exe.sha256
+            COMMAND certutil -hashfile SimConnect.dll SHA256 | findstr /v /b SHA | findstr /v /b CertUtil > SimConnect.dll.sha256
+            COMMAND del ${PROJECT_NAME}-${PROJECT_VERSION}${VERSION_SUFFIX}.zip
+            COMMAND 7z a -bd -sse -stl -tzip ${PROJECT_NAME}-${PROJECT_VERSION}${VERSION_SUFFIX}.zip ${PROJECT_NAME}.exe ${PROJECT_NAME}.exe.sha256 SimConnect.dll SimConnect.dll.sha256 LICENSE README.md
+            BYPRODUCTS ${PROJECT_NAME}.exe.sha256 SimConnect.dll.sha256 ${PROJECT_NAME}-${PROJECT_VERSION}${VERSION_SUFFIX}.zip
+            COMMENT Create SHA256 hashes and release archive
+            VERBATIM USES_TERMINAL)
+endif()
