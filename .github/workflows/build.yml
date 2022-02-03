@@ -25,15 +25,6 @@ jobs:
         path: SimConnect SDK
         repository: savormix/msfs-simconnect-sdk
         token: ${{ secrets.SDK_PAT }}
-        
-    - name: Set the value
-      id: step_one
-      run: |
-        echo "action_state=yellow" >> $GITHUB_ENV
-    - name: Use the value
-      id: step_two
-      run: |
-        echo "${{ env.action_state }}"
 
     - name: Configure CMake
       run: |
@@ -50,7 +41,7 @@ jobs:
         type version.txt
         $ver=$(type version.txt)
         echo PROJECT_VERSION=$ver
-        echo "PROJECT_VERSION=$ver" >> $GITHUB_ENV
+        echo "PROJECT_VERSION=$ver" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
       
     - name: Package
       working-directory: ${{ github.workspace }}/build
