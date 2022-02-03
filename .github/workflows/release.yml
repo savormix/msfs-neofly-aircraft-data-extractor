@@ -51,3 +51,5 @@ jobs:
         generateReleaseNotes: true
         prerelease: false
         name: test-ci
+        tag: test-ci
+        commit: ${{ github.sha }}
