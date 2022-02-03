@@ -46,8 +46,8 @@ jobs:
     - name: Package
       working-directory: ${{ github.workspace }}/build
       run: |
-        echo ${{ env.PROJECT_VERSION }}
-        7z a -bd -sse -stl -tzip ${{ env.PROJECT_NAME }}-${{ env.PROJECT_VERSION }}.zip ${{ env.BUILD_TYPE }}/${{ env.PROJECT_NAME }}.exe SimConnect.dll LICENSE README.md
+        echo "${{ env.PROJECT_VERSION }}"
+        7z a -bd -sse -stl -tzip "${{ env.PROJECT_NAME }}-${{ env.PROJECT_VERSION }}.zip" ${{ env.BUILD_TYPE }}/${{ env.PROJECT_NAME }}.exe SimConnect.dll LICENSE README.md
     
     - name: Release
       uses: ncipollo/release-action@v1.9.0
