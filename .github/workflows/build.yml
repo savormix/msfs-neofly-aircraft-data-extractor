@@ -3,6 +3,7 @@ name: CI
 on:
   push:
     branches: [ ci ]
+    tags: [ v* ]
 
 env:
   BUILD_TYPE: MinSizeRel
