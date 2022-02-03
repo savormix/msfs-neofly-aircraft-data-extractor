@@ -2,7 +2,6 @@ name: Release
 
 on:
   push:
-    branches: [ ci ]
     tags: [ v* ]
 
 env:
@@ -14,7 +13,7 @@ env:
   TARGET_OS_VERSION: "10.0.19041"
 
 jobs:
-  build:
+  release:
     permissions:
       contents: write
     runs-on: windows-2022
@@ -54,6 +53,3 @@ jobs:
         draft: false
         generateReleaseNotes: true
         prerelease: false
-        name: test-ci
-        tag: test-ci
-        commit: ${{ github.sha }}
