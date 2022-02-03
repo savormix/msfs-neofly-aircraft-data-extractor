@@ -78,6 +78,10 @@ configure_file(${SIMCONNECT_SDK_LIBS}/SimConnect.dll SimConnect.dll COPYONLY)
 configure_file(LICENSE LICENSE COPYONLY)
 configure_file(README.md README.md COPYONLY)
 
+if (${CREATE_VERSION_FILE})
+    file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/version.txt ${PROJECT_VERSION}${VERSION_SUFFIX})
+endif()
+
 if(NOT DEFINED MANUAL_PACKAGING OR NOT ${MANUAL_PACKAGING})
     add_custom_command(TARGET ${PROJECT_NAME}
             POST_BUILD
