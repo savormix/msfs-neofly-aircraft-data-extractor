@@ -7,7 +7,7 @@ on:
 
 env:
   BUILD_TYPE: MinSizeRel
-  LIB: "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.19041.0\\um\\x64" # ?!!
+  LIB: "C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.19041.0\\um\\x64"
   MSFS_SDK: ${{ github.workspace }}
   PROJECT_NAME: msfs_neofly_aircraft_data_extractor
   TARGET_ARCH: AMD64
