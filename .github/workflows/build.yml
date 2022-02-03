@@ -1,8 +1,7 @@
-name: CI
+name: Release
 
 on:
   push:
-    branches: [ ci ]
     tags: [ v* ]
 
 env:
@@ -14,11 +13,11 @@ env:
   TARGET_OS_VERSION: "10.0.19041"
 
 jobs:
-  build:
+  release:
     runs-on: windows-2022
-
     steps:
     - uses: actions/checkout@v2
+
     - name: Get MSFS SDK
       uses: actions/checkout@v2
       with:
