@@ -51,10 +51,10 @@ void ReportAircraftData(NeoFly::NeoFlyAircraftData *neoFlyData, FlightSimulatorF
         std::cout << "Unknown";
     }
     std::cout << std::endl;
-    std::cout << "- Empty weight (lbs): " << neoFlyData->dEmptyWeightPounds << std::endl;
-    std::cout << "- Max fuel (lbs): " << (neoFlyData->dMaxFuelGallons * neoFlyData->dGallonWeightPounds) << std::endl;
-    std::cout << "- Max payload (lbs): " << (neoFlyData->dMaxTakeoffPounds - neoFlyData->dEmptyWeightPounds) << std::endl;
-    std::cout << "- Max takeoff weight (lbs): " << neoFlyData->dMaxTakeoffPounds << std::endl;
+    std::cout << "- Empty weight (lbs): " << floor(neoFlyData->dEmptyWeightPounds) << std::endl;
+    std::cout << "- Max fuel (lbs): " << floor(neoFlyData->dMaxFuelGallons * neoFlyData->dGallonWeightPounds) << std::endl;
+    std::cout << "- Max payload (lbs): " << floor(neoFlyData->dMaxTakeoffPounds - neoFlyData->dEmptyWeightPounds) << std::endl;
+    std::cout << "- Max takeoff weight (lbs): " << floor(neoFlyData->dMaxTakeoffPounds) << std::endl;
     std::cout << "- Pax: " << NeoFly::InferPassengerCapacity(neoFlyData) << std::endl;
 }
 
